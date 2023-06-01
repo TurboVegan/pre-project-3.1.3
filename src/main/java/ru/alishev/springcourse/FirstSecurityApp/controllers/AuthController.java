@@ -1,0 +1,65 @@
+package ru.alishev.springcourse.FirstSecurityApp.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import ru.alishev.springcourse.FirstSecurityApp.models.Role;
+import ru.alishev.springcourse.FirstSecurityApp.models.User;
+import ru.alishev.springcourse.FirstSecurityApp.repositories.RolesRepository;
+import ru.alishev.springcourse.FirstSecurityApp.services.RegistrationService;
+import ru.alishev.springcourse.FirstSecurityApp.util.UserValidator;
+
+import javax.validation.Valid;
+import java.util.List;
+
+@Controller
+@RequestMapping("/auth")
+public class AuthController {
+
+    private final RolesRepository rolesRepository;
+    private final RegistrationService registrationService;
+    private final UserValidator userValidator;
+
+    @Autowired
+    public AuthController(RolesRepository rolesRepository, RegistrationService registrationService, UserValidator userValidator) {
+        this.rolesRepository = rolesRepository;
+        this.registrationService = registrationService;
+        this.userValidator = userValidator;
+    }
+
+    @GetMapping("/login")
+    public String loginPage() {
+        return "auth/login";
+    }
+
+    @GetMapping("/registration")
+    public ModelAndView registrationPage() {
+        User user = new User();
+        ModelAndView mav = new ModelAndView("auth/registration");
+        mav.addObject("user", user);
+
+        List<Role> roles = (List<Role>) rolesRepository.findAll();
+
+        mav.addObject("allRoles", roles);
+
+        return mav;
+    }
+
+    @PostMapping("/registration")
+    public String performRegistration(@ModelAttribute("user") @Valid User user,
+                                      BindingResult bindingResult) {
+        userValidator.validate(user, bindingResult);
+
+        if (bindingResult.hasErrors()) {
+            return "/auth/registration";
+        }
+
+        registrationService.register(user);
+        return "redirect:/login";
+    }
+}
