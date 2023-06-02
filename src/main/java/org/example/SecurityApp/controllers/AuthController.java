@@ -1,5 +1,10 @@
-package ru.alishev.springcourse.FirstSecurityApp.controllers;
+package org.example.SecurityApp.controllers;
 
+import org.example.SecurityApp.models.Role;
+import org.example.SecurityApp.models.User;
+import org.example.SecurityApp.repositories.RolesRepository;
+import org.example.SecurityApp.services.RegistrationService;
+import org.example.SecurityApp.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -8,11 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ru.alishev.springcourse.FirstSecurityApp.models.Role;
-import ru.alishev.springcourse.FirstSecurityApp.models.User;
-import ru.alishev.springcourse.FirstSecurityApp.repositories.RolesRepository;
-import ru.alishev.springcourse.FirstSecurityApp.services.RegistrationService;
-import ru.alishev.springcourse.FirstSecurityApp.util.UserValidator;
 
 import javax.validation.Valid;
 import java.util.List;

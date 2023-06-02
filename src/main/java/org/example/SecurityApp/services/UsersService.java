@@ -1,14 +1,12 @@
-package ru.alishev.springcourse.FirstSecurityApp.services;
+package org.example.SecurityApp.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.alishev.springcourse.FirstSecurityApp.models.Role;
-import ru.alishev.springcourse.FirstSecurityApp.models.User;
-import ru.alishev.springcourse.FirstSecurityApp.repositories.UsersRepository;
+import org.example.SecurityApp.models.User;
+import org.example.SecurityApp.repositories.UsersRepository;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 

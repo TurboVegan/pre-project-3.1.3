@@ -1,13 +1,14 @@
-package ru.alishev.springcourse.FirstSecurityApp.controllers;
+package org.example.SecurityApp.controllers;
 
 
+import org.example.SecurityApp.models.User;
+import org.example.SecurityApp.services.UsersDetailsService;
+import org.example.SecurityApp.services.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import ru.alishev.springcourse.FirstSecurityApp.models.User;
-import ru.alishev.springcourse.FirstSecurityApp.services.UsersDetailsService;
-import ru.alishev.springcourse.FirstSecurityApp.services.UsersService;
+
 import java.security.Principal;
 
 @Controller

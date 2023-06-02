@@ -1,4 +1,4 @@
-    package ru.alishev.springcourse.FirstSecurityApp.models;
+    package org.example.SecurityApp.models;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,4 +1,4 @@
-package ru.alishev.springcourse.FirstSecurityApp;
+package org.example.SecurityApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

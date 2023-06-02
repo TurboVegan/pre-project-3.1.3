@@ -8,10 +8,10 @@
 <body>
 <div th:each="user : ${users}">
     <a th:href="@{/admin/user/{id}(id=${user.getId()})}"
-       th:text="${'Name: ' + user.getUsername() + ', ID: ' + user.getId() + ', Role: ' + user.getRoles()}">user</a>
+       th:text="${'Username: ' + user.getUsername() + ', ID: ' + user.getId() + ', Role: ' + user.getRoles()}">user</a>
 </div>
 <br>
-<a href="/admin/new">Crete new user</a>
+<a href="/admin/new">Create new user</a>
 <br>
 <br>
 <form th:action="@{/logout}" th:method="POST">

@@ -1,4 +1,4 @@
-package ru.alishev.springcourse.FirstSecurityApp.config;
+package org.example.SecurityApp.config;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

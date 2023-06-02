@@ -1,8 +1,8 @@
-package ru.alishev.springcourse.FirstSecurityApp.repositories;
+package org.example.SecurityApp.repositories;
 
+import org.example.SecurityApp.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.alishev.springcourse.FirstSecurityApp.models.User;
 
 import java.util.Optional;
 

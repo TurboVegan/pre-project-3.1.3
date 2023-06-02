@@ -1,12 +1,12 @@
-package ru.alishev.springcourse.FirstSecurityApp.util;
+package org.example.SecurityApp.util;
 
+import org.example.SecurityApp.models.User;
+import org.example.SecurityApp.services.UsersDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ru.alishev.springcourse.FirstSecurityApp.models.User;
-import ru.alishev.springcourse.FirstSecurityApp.services.UsersDetailsService;
 
 @Component
 public class UserValidator implements Validator {
