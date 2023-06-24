@@ -3,8 +3,8 @@ package org.example.SecurityApp.controllers;
 
 import org.example.SecurityApp.models.Role;
 import org.example.SecurityApp.models.User;
-import org.example.SecurityApp.repositories.RolesRepository;
-import org.example.SecurityApp.services.UsersService;
+import org.example.SecurityApp.repositories.RoleRepository;
+import org.example.SecurityApp.services.UserService;
 import org.example.SecurityApp.util.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,26 +22,26 @@ import java.util.List;
 public class AdminController {
 
     private final UserValidator userValidator;
-    private final RolesRepository rolesRepository;
-    private final UsersService usersService;
+    private final RoleRepository roleRepository;
+    private final UserService userService;
 
     @Autowired
     public AdminController(UserValidator userValidator,
-                           RolesRepository rolesRepository, UsersService usersService) {
+                           RoleRepository roleRepository, UserService userService) {
         this.userValidator = userValidator;
-        this.rolesRepository = rolesRepository;
-        this.usersService = usersService;
+        this.roleRepository = roleRepository;
+        this.userService = userService;
     }
 
     @GetMapping()
     public String index(ModelMap model) {
-        model.addAttribute("users", usersService.findAll());
+        model.addAttribute("users", userService.findAll());
         return "admin/index";
     }
 
     @GetMapping("/user/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", usersService.findOne(id));
+        model.addAttribute("user", userService.findOne(id));
         return "admin/show";
     }
 
@@ -51,7 +51,7 @@ public class AdminController {
         ModelAndView mav = new ModelAndView("admin/new");
         mav.addObject("user", user);
 
-        List<Role> roles = (List<Role>) rolesRepository.findAll();
+        List<Role> roles = (List<Role>) roleRepository.findAll();
 
         mav.addObject("allRoles", roles);
 
@@ -66,17 +66,17 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             return "/auth/registration";
         }
-        usersService.register(user);
+        userService.register(user);
         return "redirect:/admin";
     }
 
     @GetMapping("/{id}/edit")
     public ModelAndView editUser(@PathVariable(name = "id") Integer id) {
-        User user = usersService.findOne(id);
+        User user = userService.findOne(id);
         ModelAndView mav = new ModelAndView("admin/edit");
         mav.addObject("user", user);
 
-        List<Role> roles = (List<Role>) rolesRepository.findAll();
+        List<Role> roles = (List<Role>) roleRepository.findAll();
 
         mav.addObject("allRoles", roles);
 
@@ -85,13 +85,13 @@ public class AdminController {
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        usersService.update(id, user);
+        userService.update(id, user);
         return "redirect:/admin";
     }
 
     @DeleteMapping("/user/{id}")
     public String delete(@PathVariable("id") int id) {
-        usersService.delete(id);
+        userService.delete(id);
         return "redirect:/admin";
     }
 }
